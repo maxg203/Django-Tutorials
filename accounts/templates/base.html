@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        {% block head %}
+        <title>Base</title>
+        {% endblock %}
+    </head>
+    <body>
+        <br>
+        <div class="container">
+            <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Social Network</a>
+              </div>
+              <div id="navbar" class="navbar-collapse collapse">
+                {% if user.is_authenticated %}
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'accounts:home' %}">Home</a></li>
+                    <li><a href="{% url 'accounts:view_profile' %}">Profile</a></li>
+                    <li><a href="{% url 'accounts:edit_profile' %}">Edit Profile</a></li>
+                    <li><a href="{% url 'accounts:change_password' %}">Change Password</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'accounts:logout' %}">Log out</a></li>
+                </ul>
+                {% else %}
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'accounts:reset_password' %}">Reset Password</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="{% url 'accounts:login' %}">Login</a></li>
+                  <li><a href="{% url 'accounts:register' %}">Register</a></li>
+                </ul>
+                {% endif %}
+              </div><!--/.nav-collapse -->
+            </div><!--/.container-fluid -->
+          </nav>
+        </div>
+        {% block body %}
+            <h1>Base</h1>
+        {% endblock %}
+    </body>
+</html>
