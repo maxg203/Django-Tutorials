@@ -11,7 +11,7 @@
     <h2>{{ text }}</h2>
     {% for post in posts %}
         <h1>{{ post.post }}</h1>
-        <p>Posted by {{ post.user.get_full_name }} on {{ post.date }}</p>
+        <p>Posted by {{ post.user.get_full_name }} on {{ post.created }}</p>
     {% endfor %}
 </div>
 {% endblock %}
