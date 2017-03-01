@@ -5,7 +5,8 @@
     <h1>Home</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.post }}
+        <br>
         <button type="submit">Submit</button>
     </form>
     <h2>{{ text }}</h2>
