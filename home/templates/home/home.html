@@ -2,17 +2,27 @@
 
 {% block body %}
 <div class="container">
-    <h1>Home</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.post }}
-        <br>
-        <button type="submit">Submit</button>
-    </form>
-    <h2>{{ text }}</h2>
-    {% for post in posts %}
-        <h1>{{ post.post }}</h1>
-        <p>Posted by {{ post.user.get_full_name }} on {{ post.created }}</p>
-    {% endfor %}
+    <div class="col-md-8">
+        <h2>Home</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.post }}
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+        <h2>{{ text }}</h2>
+        {% for post in posts %}
+            <h1>{{ post.post }}</h1>
+            <p>Posted by {{ post.user.get_full_name }} on {{ post.created }}</p>
+        {% endfor %}
+    </div>
+    <div class="col-md-4">
+        <h2>Other People</h2>
+        {% for user in users %}
+            <a href="{% url 'accounts:view_profile_with_pk' pk=user.pk %}">
+                <h3>{{ user.username }}</h3>
+            </a>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
