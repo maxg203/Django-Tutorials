@@ -12,7 +12,7 @@ class HomeView(TemplateView):
     def get(self, request):
         form = HomeForm()
         posts = Post.objects.all().order_by('-created')
-        users = User.objects.all()
+        users = User.objects.exclude(id=request.user.id)
 
         args = {'form': form, 'posts': posts, 'users': users}
         return render(request, self.template_name, args)
