@@ -23,6 +23,12 @@
                 <h3>{{ user.username }}</h3>
             </a>
         {% endfor %}
+        <h2>Friends</h2>
+        {% for friend in friends %}
+            <a href="{% url 'accounts:view_profile_with_pk' pk=user.pk %}">
+                <h3>{{ friend.username }}</h3>
+            </a>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
