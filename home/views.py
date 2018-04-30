@@ -13,8 +13,10 @@ class HomeView(TemplateView):
         form = HomeForm()
         posts = Post.objects.all().order_by('-created')
         users = User.objects.exclude(id=request.user.id)
-        friend = Friend.objects.get(current_user=request.user)
-        friends = friend.users.all()
+        friends = []
+        if Friend.objects.filter(current_user=request.user).exists() :
+            friend = Friend.objects.get(current_user=request.user)
+            friends = friend.users.all()
 
         args = {
             'form': form, 'posts': posts, 'users': users, 'friends': friends
