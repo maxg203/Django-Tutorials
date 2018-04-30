@@ -7,13 +7,13 @@ class UserProfileManager(models.Manager):
         return super(UserProfileManager, self).get_queryset().filter(city='London')
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User,on_delete=models.DO_NOTHING)
     description = models.CharField(max_length=100, default='')
     city = models.CharField(max_length=100, default='')
     website = models.URLField(default='')
     phone = models.IntegerField(default=0)
     image = models.ImageField(upload_to='profile_image', blank=True)
-
+    objects = models.Manager()
     london = UserProfileManager()
 
     def __str__(self):
