@@ -7,6 +7,16 @@
 
 {% block body %}
 <div class="container">
+  <div class="col-xs-12">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="" role="alert">
+      <center>{{ message }}</center>
+    </div>
+    {% endfor%}
+    {% endif %}
+
+  </div>
     <h1>Profile</h1>
     <p>Username: {{ user }}</p>
     <p>First name: {{ user.first_name }}</p>
