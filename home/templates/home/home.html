@@ -12,8 +12,9 @@
         </form>
         <h2>{{ text }}</h2>
         {% for post in posts %}
-            <h1>{{ post.post }}</h1>
-            <p>Posted by {{ post.user.get_full_name }} on {{ post.created }}</p>
+                <h1>{{ post.post }}</h1>
+                <p>Posted by {{ post.user.get_full_name }} on {{ post.created }}</p>
+                  <a href="{% url 'home:single_post' pk=post.pk %}">See More</a>
         {% endfor %}
     </div>
     <div class="col-md-4">

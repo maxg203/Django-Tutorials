@@ -1,9 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Comment(models.Model):
+    comment = models.CharField(max_length=500)
+    user = models.ForeignKey(User,on_delete=models.DO_NOTHING)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
 class Post(models.Model):
     post = models.CharField(max_length=500)
+    comments = models.ManyToManyField(Comment)
     user = models.ForeignKey(User,on_delete=models.DO_NOTHING)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
