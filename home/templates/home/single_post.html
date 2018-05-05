@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="col-md-8">
+            <h1>{{ post.post }}</h1>
+            <p>Posted by {{ post.user.username }} on {{ post.created }}</p>
+            <form method="post" action="{% url 'home:single_post' pk=post.pk %}">
+                {% csrf_token %}
+                {{ form.comment }}
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+            <h2>{{ text }}</h2>
+            {% for comment in comments %}
+                    <div>
+                        <p><font size="5">{{ comment.user.username }}  :  </font> {{ comment.comment }}</p>
+                        <p>{{ comment.created }}</p>
+                        <br>
+                    </div>
+
+            {% endfor %}
+    </div>
+
+
+</div>
+{% endblock %}
